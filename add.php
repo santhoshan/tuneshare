@@ -1,4 +1,23 @@
-<?php require_once('header.php'); ?>
+<?php session_start();
+
+$first_name = filter_input(INPUT_POST, 'fname');
+$last_name = filter_input(INPUT_POST, 'lname');
+$email = filter_input(INPUT_POST, 'email');
+
+$_SESSION['fname'] = $first_name;
+$_SESSION['lname'] = $last_name; 
+$_SESSION['email'] = $email; 
+
+if(isset($_SESSION['fname'], $_SESSION['lname'], $_SESSION
+['email'])) {
+  echo "<p> Thank you " . $_SESSION['fname'] . " " . $_SESSION
+['lname']; 
+}
+else {
+    echo "<p> Thank you "; 
+}
+
+require_once('header.php'); ?>
 <body class="add">
 <div class="container inner">
 <header class="masthead mb-auto">
@@ -8,6 +27,7 @@
         <a class="nav-link" href="index.php">Home</a>
         <a class="nav-link" href="add.php">Share Your Tune</a>
         <a class="nav-link" href="view.php">View Playlists</a>
+        <a class="nav-link" href="destroy.php">Forget Me</a>
       </nav>
     </div>
   </header>
